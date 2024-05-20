@@ -33,11 +33,11 @@ async def add_crime(request):
 @app.get("/crimes")
 async def get_crimes(request):
     with SessionLocal() as db:
-        skip = request.queries.get("skip", 0)
-        limit = request.queries.get("limit", 100)
+        skip = int(request.query_params.get("skip", "0"))
+        limit = int(request.query_params.get("limit", "100"))
         crimes = crud.get_crimes(db, skip=skip, limit=limit)
 
-    return crimes
+    return [crime.to_dict() for crime in crimes]
 
 
 @app.get("/crimes/:crime_id", auth_required=True)

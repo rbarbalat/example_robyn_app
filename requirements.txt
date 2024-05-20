@@ -4,7 +4,7 @@ multiprocess==0.70.14
 nestd==0.3.1
 passlib==1.7.4
 PySnooper==1.2.0
-robyn==0.36.2
+robyn==0.54.4
 SQLAlchemy==2.0.19
 typing_extensions==4.7.1
 watchdog==2.2.1
