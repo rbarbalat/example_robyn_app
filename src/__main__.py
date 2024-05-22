@@ -6,7 +6,7 @@ from sqlalchemy import Date
 
 from . import crud
 
-from .models import Crime, SessionLocal
+from .models import Crime, SessionLocal, User
 
 app = Robyn(__file__)
 
@@ -49,10 +49,14 @@ async def get_crime(request):
     if crime is None:
         raise Exception("Crime not found")
 
-    return crime
+    return crime.to_dict()
 
+# thread '<unnamed>' panicked at src/server.rs:329:14:
+# called `Result::unwrap()` on an `Err` value: insertion failed due to conflict with previously registered route: /crimes/:crime_id
+# note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 
-@app.put("/crimes/:crime_id")
+# @app.put("/crimes/:crime_id", auth_required=True) #app will not start
+@app.put("/crimes/:crime_id")   #app will start but requests are rejected as unauthorized
 async def update_crime(request):
     crime = json.loads(request.body)
     crime_id = int(request.path_params.get("crime_id"))
@@ -61,7 +65,7 @@ async def update_crime(request):
     if updated_crime is None:
         raise Exception("Crime not found")
 
-    return updated_crime
+    return updated_crime.to_dict()
 
 
 @app.delete("/crimes/{crime_id}")
@@ -113,7 +117,6 @@ def needs_authentication(request):
 async def get_current_user(request):
     user = request.identity.claims["user"]
     return user
-
 
 import pathlib
 

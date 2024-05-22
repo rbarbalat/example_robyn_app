@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+bcrypt = "==4.0.1"
+dill = "==0.3.6"
+multiprocess = "==0.70.14"
+nestd = "==0.3.1"
+passlib = "==1.7.4"
+pysnooper = "==1.2.0"
+robyn = "==0.54.4"
+sqlalchemy = "==2.0.19"
+typing-extensions = "==4.7.1"
+watchdog = "==2.2.1"
+python-jose = "==3.2.0"
+jinja2 = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

@@ -1,7 +1,7 @@
 # models.py
-from sqlalchemy import Column, DateTime, Float, Integer, String, create_engine
+from sqlalchemy import Column, DateTime, Float, Integer, String, create_engine, Date
 from sqlalchemy.orm import declarative_base, sessionmaker
-from datetime import datetime
+from datetime import date
 
 DATABASE_URL = "sqlite:///./gotham_database.db"
 
@@ -20,7 +20,7 @@ class Crime(Base):
     description = Column(String)
     location = Column(String)
     #suspect_name = Column(String)
-    date = Column(DateTime, default = datetime.now())
+    date = Column(Date, default = date.today())
     latitude = Column(Float)
     longitude = Column(Float)
 
